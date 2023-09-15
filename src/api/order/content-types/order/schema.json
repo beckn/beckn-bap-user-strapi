@@ -4,7 +4,8 @@
   "info": {
     "singularName": "order",
     "pluralName": "orders",
-    "displayName": "Order"
+    "displayName": "Order",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -12,14 +13,55 @@
   "pluginOptions": {},
   "attributes": {
     "order_id": {
-      "type": "string",
+      "type": "uid",
       "required": true
     },
-    "order_type": {
-      "type": "string",
-      "required": true
+    "bpp_id": {
+      "type": "string"
     },
-    "user_id": {
+    "bpp_uri": {
+      "type": "string"
+    },
+    "currency": {
+      "type": "string"
+    },
+    "delivery_status": {
+      "type": "string"
+    },
+    "descriptor": {
+      "type": "json"
+    },
+    "price": {
+      "type": "decimal"
+    },
+    "billing": {
+      "type": "json"
+    },
+    "fulfillments": {
+      "type": "json"
+    },
+    "created_date": {
+      "type": "datetime"
+    },
+    "last_updated_date": {
+      "type": "datetime"
+    },
+    "quote": {
+      "type": "json"
+    },
+    "transaction_id": {
+      "type": "string"
+    },
+    "message_id": {
+      "type": "string"
+    },
+    "payments": {
+      "type": "json"
+    },
+    "items": {
+      "type": "json"
+    },
+    "user": {
       "type": "relation",
       "relation": "oneToOne",
       "target": "plugin::users-permissions.user"
