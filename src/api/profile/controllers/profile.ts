@@ -6,7 +6,7 @@ import { factories } from '@strapi/strapi'
 
 export default factories.createCoreController('api::profile.profile', ({ strapi: any }) => ({
     async find(ctx: any) {
-        const profile = strapi.db.query('api::profile.profile').findOne({ where: { 'user_id': ctx.state.user.id }, populate: ["resume"] });
+        const profile = strapi.db.query('api::profile.profile').findOne({ where: { 'user': ctx.state.user.id }, populate: ["documents"] });
         if (!profile)
             ctx.response.status = 404;
         return profile;
@@ -16,10 +16,10 @@ export default factories.createCoreController('api::profile.profile', ({ strapi:
         if (!ctx.state.user || !ctx.state.user.id)
             ctx.response.status = 401;
 
-        const data = { ...ctx.request.body, user_id: ctx.state.user.id, publishedAt: new Date() };
+        const data = { ...ctx.request.body, user: ctx.state.user.id, publishedAt: new Date() };
         const files = ctx.request.files;
 
-        const extProfile = await strapi.db.query('api::profile.profile').findOne({ where: { 'user_id': ctx.state.user.id } });
+        const extProfile = await strapi.db.query('api::profile.profile').findOne({ where: { 'user': ctx.state.user.id } });
 
         if (!extProfile) {
             await strapi.entityService.create('api::profile.profile', { data, files });

@@ -4,7 +4,8 @@
   "info": {
     "singularName": "profile",
     "pluralName": "profiles",
-    "displayName": "Profile"
+    "displayName": "Profile",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -15,18 +16,30 @@
       "type": "string",
       "minLength": 3
     },
+    "phone": {
+      "type": "string",
+      "minLength": 5,
+      "maxLength": 15,
+      "unique": true
+    },
     "address": {
       "type": "text",
       "minLength": 3
     },
-    "resume": {
+    "zip_code": {
+      "type": "string",
+      "minLength": 3,
+      "maxLength": 8
+    },
+    "documents": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
       "allowedTypes": [
         "files"
-      ],
-      "type": "media",
-      "multiple": false
+      ]
     },
-    "user_id": {
+    "user": {
       "type": "relation",
       "relation": "oneToOne",
       "target": "plugin::users-permissions.user"
