@@ -7,4 +7,5 @@ export default ({ env }) => ({
   webhooks: {
     populateRelations: env.bool('WEBHOOKS_POPULATE_RELATIONS', false),
   },
+  url: env('APP_URL', 'https://strapi-bap.becknprotocol.io')
 });
