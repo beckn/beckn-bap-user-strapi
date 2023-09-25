@@ -25,6 +25,7 @@ export default factories.createCoreService('api::order.order', ({ strapi: Strapi
             message_id: context.message_id,
             payments: order.payments,
             items: order.items,
+            domain: context.domain
         };
     }
 }));

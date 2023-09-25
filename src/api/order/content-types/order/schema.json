@@ -65,6 +65,9 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "plugin::users-permissions.user"
+    },
+    "domain": {
+      "type": "string"
     }
   }
 }
