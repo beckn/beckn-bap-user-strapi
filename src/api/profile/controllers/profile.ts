@@ -13,21 +13,18 @@ export default factories.createCoreController('api::profile.profile', ({ strapi:
     },
 
     async create(ctx: any) {
-        if (!ctx.state.user || !ctx.state.user.id)
-            ctx.response.status = 401;
-
-        const data = { ...ctx.request.body, user: ctx.state.user.id, publishedAt: new Date() };
-        const files = ctx.request.files;
 
         const extProfile = await strapi.db.query('api::profile.profile').findOne({ where: { 'user': ctx.state.user.id } });
 
+        const data = JSON.parse(ctx.request.body.data);
+        data.user = ctx.state.user.id;
+        ctx.request.body.data = JSON.stringify(data);
+
         if (!extProfile) {
-            await strapi.entityService.create('api::profile.profile', { data, files });
-            ctx.response.status = 200
-            return;
+            return super.create(ctx);
         }
-        await strapi.entityService.update('api::profile.profile', extProfile.id, { data, files });
-        ctx.response.status = 200
-        return;
+
+        ctx.params.id = extProfile.id;
+        return super.update(ctx);
     }
 }));
