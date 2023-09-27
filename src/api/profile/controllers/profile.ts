@@ -6,14 +6,15 @@ import { factories } from '@strapi/strapi'
 
 export default factories.createCoreController('api::profile.profile', ({ strapi: any }) => ({
     async find(ctx: any) {
-        const profile = strapi.db.query('api::profile.profile').findOne({ where: { 'user': ctx.state.user.id }, populate: ["documents"] });
+        const profile = await strapi.db.query('api::profile.profile').findOne({ where: { 'user': ctx.state.user.id }, populate: ["documents"] });
         if (!profile)
             ctx.response.status = 404;
-        return profile;
+
+        ctx.params.id = profile.id;
+        return super.findOne(ctx);
     },
 
     async create(ctx: any) {
-
         const extProfile = await strapi.db.query('api::profile.profile').findOne({ where: { 'user': ctx.state.user.id } });
 
         const data = JSON.parse(ctx.request.body.data);
