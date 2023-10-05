@@ -13,8 +13,9 @@
   "pluginOptions": {},
   "attributes": {
     "order_id": {
-      "type": "uid",
-      "required": true
+      "type": "string",
+      "required": true,
+      "unique": true
     },
     "bpp_id": {
       "type": "string"
