@@ -40,6 +40,11 @@
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::document.document"
+    },
+    "skills": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::skill.skill"
     }
   }
 }
