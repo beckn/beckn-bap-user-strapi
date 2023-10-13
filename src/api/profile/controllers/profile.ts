@@ -7,7 +7,6 @@ import { factories } from '@strapi/strapi'
 export default factories.createCoreController('api::profile.profile', ({ strapi: any }) => ({
     async find(ctx: any) {
         const profile = await strapi.db.query('api::profile.profile').findOne({ where: { 'user': ctx.state.user.id } });
-        console.log({ profile });
         ctx.params.id = null;
         if (profile)
             ctx.params.id = profile.id;
