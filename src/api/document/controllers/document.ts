@@ -16,7 +16,6 @@ export default factories.createCoreController('api::document.document', ({ strap
         data.user = ctx.state.user.id;
         ctx.request.body.data = JSON.stringify(data);
 
-        console.log(ctx.request.body.data);
         return super.create(ctx);
     },
 
