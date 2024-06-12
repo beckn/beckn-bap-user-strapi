@@ -9,7 +9,7 @@ export default {
         "api::order.order",
         {
           filters: {
-            order_id: ctx.request.body?.message?.order?.id,
+            order_id: ctx.request.body?.data?.[0]?.message?.order?.id,
           },
         }
       );
@@ -17,11 +17,11 @@ export default {
         throw new Error("No Order Found");
       }
 
-      ctx.request.body.message.order.state =
-        ctx.request.body?.message?.order?.fulfillments?.[0]?.state?.descriptor?.short_desc;
+      ctx.request.body.data[0].message.order.state =
+        ctx.request.body?.data?.[0]?.message?.order?.fulfillments?.[0]?.state?.descriptor?.short_desc;
       const builtOrder = strapi
         .service("api::order.order")
-        .buildData({ ...ctx.request.body });
+        .buildData({ ...ctx.request.body.data[0] });
       const updatedResponse = await strapi.entityService.update(
         "api::order.order",
         requiredOrder[0].id,
