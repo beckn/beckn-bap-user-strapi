@@ -5,7 +5,6 @@
 export default {
   updateOrder: async (ctx, next) => {
     try {
-      // console.log("here", ctx.request.body);
       const requiredOrder = await strapi.entityService.findMany(
         "api::order.order",
         {
@@ -17,6 +16,9 @@ export default {
       if (!requiredOrder.length) {
         throw new Error("No Order Found");
       }
+
+      ctx.request.body.message.order.state =
+        ctx.request.body?.message?.order?.fulfillments?.[0]?.state?.descriptor?.short_desc;
       const builtOrder = strapi
         .service("api::order.order")
         .buildData({ ...ctx.request.body });
