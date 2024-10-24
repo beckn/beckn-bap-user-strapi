@@ -1,0 +1,43 @@
+{
+  "kind": "collectionType",
+  "collectionName": "customers",
+  "info": {
+    "singularName": "customer",
+    "pluralName": "customers",
+    "displayName": "customer",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "customer_id": {
+      "type": "string",
+      "unique": true,
+      "required": true
+    },
+    "phone_no": {
+      "type": "string",
+      "required": true
+    },
+    "billing_address": {
+      "type": "text"
+    },
+    "role": {
+      "type": "enumeration",
+      "enum": [
+        "CONSUMER",
+        "PROSUMER"
+      ],
+      "required": true,
+      "default": "CONSUMER"
+    },
+    "utility": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::utility-master.utility-master",
+      "inversedBy": "customers"
+    }
+  }
+}

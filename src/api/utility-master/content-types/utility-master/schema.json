@@ -1,0 +1,26 @@
+{
+  "kind": "collectionType",
+  "collectionName": "utility_masters",
+  "info": {
+    "singularName": "utility-master",
+    "pluralName": "utility-masters",
+    "displayName": "utility_master"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "customers": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::customer.customer",
+      "mappedBy": "utility"
+    }
+  }
+}
