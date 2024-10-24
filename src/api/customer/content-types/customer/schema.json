@@ -38,6 +38,18 @@
       "relation": "manyToOne",
       "target": "api::utility-master.utility-master",
       "inversedBy": "customers"
+    },
+    "consumption_logs": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::consumption-log.consumption-log",
+      "mappedBy": "customer"
+    },
+    "production_logs": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::production-log.production-log",
+      "mappedBy": "customer"
     }
   }
 }

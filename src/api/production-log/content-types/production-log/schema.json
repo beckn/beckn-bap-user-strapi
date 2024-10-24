@@ -1,0 +1,28 @@
+{
+  "kind": "collectionType",
+  "collectionName": "production_logs",
+  "info": {
+    "singularName": "production-log",
+    "pluralName": "production-logs",
+    "displayName": "production_log",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "unit_produced": {
+      "type": "string"
+    },
+    "current_meter_reading": {
+      "type": "string"
+    },
+    "customer": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::customer.customer",
+      "inversedBy": "production_logs"
+    }
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "kind": "collectionType",
+  "collectionName": "consumption_logs",
+  "info": {
+    "singularName": "consumption-log",
+    "pluralName": "consumption-logs",
+    "displayName": "consumption_log",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "unit_consumed": {
+      "type": "string"
+    },
+    "current_meter_reading": {
+      "type": "string",
+      "required": false
+    },
+    "customer": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::customer.customer",
+      "inversedBy": "consumption_logs"
+    }
+  }
+}
