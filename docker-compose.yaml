@@ -1,0 +1,16 @@
+version: "3.8"
+
+services:
+  mysql2:
+    image: mysql/mysql-server:latest
+    container_name: mysql2-container
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_ROOT_USER: root
+    volumes:
+      - mysql2-data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+
+volumes:
+  mysql2-data:

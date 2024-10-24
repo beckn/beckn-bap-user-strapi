@@ -30,7 +30,8 @@ $RECYCLE.BIN/
 *.msi
 *.msm
 *.msp
-
+src/plugins
+config/plugins.ts
 
 ############################
 # Packages
