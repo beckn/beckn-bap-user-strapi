@@ -1,0 +1,48 @@
+{
+  "kind": "collectionType",
+  "collectionName": "distributed_supply_network_members",
+  "info": {
+    "singularName": "distributed-supply-network-member",
+    "pluralName": "distributed-supply-network-members",
+    "displayName": "distributed_supply_network_member",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "CONSUMER",
+        "PROSUMER"
+      ]
+    },
+    "profile": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::profile.profile",
+      "inversedBy": "distributed_supply_network_members"
+    },
+    "proofs": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "credential": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::credential.credential"
+    },
+    "category": {
+      "type": "string"
+    }
+  }
+}

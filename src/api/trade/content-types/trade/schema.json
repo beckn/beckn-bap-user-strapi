@@ -1,0 +1,83 @@
+{
+  "kind": "collectionType",
+  "collectionName": "trades",
+  "info": {
+    "singularName": "trade",
+    "pluralName": "trades",
+    "displayName": "trade",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "unit": {
+      "type": "string",
+      "required": true
+    },
+    "item_name": {
+      "type": "string",
+      "required": true
+    },
+    "trusted_source": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "cred_required": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "recurring": {
+      "type": "boolean",
+      "default": false,
+      "required": false
+    },
+    "profile": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::profile.profile",
+      "inversedBy": "trades"
+    },
+    "domain": {
+      "type": "string",
+      "required": true
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": [
+        "RECEIVED",
+        "IN PROGRESS",
+        "SUCCESS",
+        "FAILED"
+      ],
+      "default": "RECEIVED",
+      "required": true
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "BUY",
+        "SELL"
+      ],
+      "default": "BUY",
+      "required": true
+    },
+    "trade_events": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::trade-event.trade-event",
+      "mappedBy": "trade"
+    },
+    "quantity": {
+      "type": "integer"
+    },
+    "order": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::order.order"
+    }
+  }
+}
