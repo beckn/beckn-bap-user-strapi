@@ -1,57 +1,107 @@
-# 🚀 Getting started with Strapi
+# Beckn BAP User Strapi
 
-Strapi comes with a full featured [Command Line Interface](https://docs.strapi.io/dev-docs/cli) (CLI) which lets you scaffold and manage your project in seconds.
+This repository contains the implementation of a Beckn BAP (Buyer App Provider) using Strapi CMS. It provides a robust backend for implementing Beckn-compliant services, specifically focused on user management and order processing.
 
-### `develop`
+## Table of Contents
 
-Start your Strapi application with autoReload enabled. [Learn more](https://docs.strapi.io/dev-docs/cli#strapi-develop)
+- [Overview](#overview)
+- [Features](#features)
+- [Installation](#installation)
+- [Configuration](#configuration)
+- [Usage](#usage)
+- [Release Notes](#release-notes)
+- [Contributing](#contributing)
+- [License](#license)
 
+## Overview
+
+The Beckn Protocol is an open and decentralized standard designed to enable interoperability among various digital platforms. This implementation provides a Strapi-based backend for a Beckn BAP, handling user management, order processing, and other essential functionalities.
+
+## Features
+
+- User authentication and authorization
+- Order management and processing
+- Category-based order filtering
+- Account reset functionality
+- Webhook support for unsolicited calls
+
+## Installation
+
+1. **Clone the Repository**:
+   ```bash
+   git clone https://github.com/beckn/beckn-bap-user-strapi.git
+   ```
+
+2. **Install Dependencies**:
+   ```bash
+   npm install
+   ```
+
+3. **Configure Environment Variables**:
+   Copy `.env.example` to `.env` and update the values:
+   ```bash
+   cp .env.example .env
+   ```
+
+4. **Start the Application**:
+   ```bash
+   npm run develop
+   ```
+
+## Configuration
+
+The application can be configured through environment variables and Strapi's configuration files. Key configurations include:
+
+- Database settings
+- JWT authentication
+- API endpoints
+- Webhook configurations
+
+## Usage
+
+### Authentication
+```bash
+# Login to get JWT token
+curl -X POST http://localhost:1338/api/auth/local \
+  -H "Content-Type: application/json" \
+  -d '{
+    "identifier": "your-email@example.com",
+    "password": "your-password"
+  }'
 ```
-npm run develop
-# or
-yarn develop
+
+### Reset Account
+```bash
+curl -X POST http://localhost:1338/api/reset-account \
+  -H "Authorization: Bearer YOUR_JWT_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "category": "category-id"
+  }'
 ```
 
-### `start`
+## Release Notes
 
-Start your Strapi application with autoReload disabled. [Learn more](https://docs.strapi.io/dev-docs/cli#strapi-start)
+### Latest Changes
+1. **Initial Code**: Base implementation of Strapi for BAP Orders, providing core functionality for order management and processing
+2. **Webhook Support**: Added support for unsolicited webhooks to handle real-time order status updates from BPPs
+3. **Account Reset**: Implemented account reset functionality allowing users to delete all orders for a specific category
 
-```
-npm run start
-# or
-yarn start
-```
+## Contributing
 
-### `build`
+Contributions are welcome! If you want to contribute to this project, follow these steps:
 
-Build your admin panel. [Learn more](https://docs.strapi.io/dev-docs/cli#strapi-build)
+1. Fork the repository
+2. Create a feature branch
+3. Commit your changes
+4. Open a pull request
 
-```
-npm run build
-# or
-yarn build
-```
+Make sure to follow the coding standards and include relevant test cases.
 
-## ⚙️ Deployment
+## License
 
-Strapi gives you many possible deployment options for your project including [Strapi Cloud](https://cloud.strapi.io). Browse the [deployment section of the documentation](https://docs.strapi.io/dev-docs/deployment) to find the best solution for your use case.
-
-## 📚 Learn more
-
-- [Resource center](https://strapi.io/resource-center) - Strapi resource center.
-- [Strapi documentation](https://docs.strapi.io) - Official Strapi documentation.
-- [Strapi tutorials](https://strapi.io/tutorials) - List of tutorials made by the core team and the community.
-- [Strapi blog](https://strapi.io/blog) - Official Strapi blog containing articles made by the Strapi team and the community.
-- [Changelog](https://strapi.io/changelog) - Find out about the Strapi product updates, new features and general improvements.
-
-Feel free to check out the [Strapi GitHub repository](https://github.com/strapi/strapi). Your feedback and contributions are welcome!
-
-## ✨ Community
-
-- [Discord](https://discord.strapi.io) - Come chat with the Strapi community including the core team.
-- [Forum](https://forum.strapi.io/) - Place to discuss, ask questions and find answers, show your Strapi project and get feedback or just talk with other Community members.
-- [Awesome Strapi](https://github.com/strapi/awesome-strapi) - A curated list of awesome things related to Strapi.
+This project is licensed under the [MIT License](LICENSE).
 
 ---
 
-<sub>🤫 Psst! [Strapi is hiring](https://strapi.io/careers).</sub>
+For any queries or support, please raise an issue in this repository or reach out to the Beckn team.
